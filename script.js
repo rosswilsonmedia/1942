@@ -166,16 +166,16 @@ setInterval(function(){
 }, 10000);
 
 document.onkeydown = function(a){
-    console.log(a.keyCode);
-    if(a.keyCode==37 && hero.x>10){
+    console.log(a.key);
+    if((a.key=='ArrowLeft' || a.key=='a') && hero.x>10){
         hero.x-= 10;
-    } else if(a.keyCode==39 && hero.x<980){
+    } else if((a.key=='ArrowRight' || a.key=='d') && hero.x<970){
         hero.x+=10;
-    } else if(a.keyCode==38 && hero.y>10){
+    } else if((a.key=='ArrowUp' || a.key=='w') && hero.y>10){
         hero.y-=10;
-    } else if(a.keyCode==40 && hero.y<530){
+    } else if((a.key=='ArrowDown' || a.key=='s') && hero.y<520){
         hero.y+=10;
-    } else if(a.keyCode==32){
+    } else if(a.key==' '){
         bullets.push({x: hero.x+8, y: hero.y-15});
         fireSFX.load();
         fireSFX.play();

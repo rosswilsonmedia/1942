@@ -5,15 +5,15 @@
 <style type="text/css">
 	body{
 		background-color:black;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		display: block;
+		font-family: 'Courier New', Courier, monospace;
 	}
 	#container{
 		background: url('img/background.jpg');
 		width:1000px;
 		height:550px;
 		position: relative;
+		margin: 0 auto;
 	}
 	#hero{
 		background: url('img/1942.gif');
@@ -66,7 +66,13 @@
 		background-color:rgba(103, 103, 103, 0.75);
 		padding:10px;
 		font-size:30px;
-		font-family: 'Courier New', Courier, monospace;
+	}
+	h1{
+		text-align: center;
+		color: whitesmoke;
+	}
+	h1:first-of-type{
+		margin-top: 1em;
 	}
 </style>
 </head>
@@ -79,6 +85,8 @@
 		<div id="explosions"></div>
 		<div id='score'>0</div>
 	</div>
+	<h1>Use WASD or the Arrow Keys to Move</h1>
+	<h1>Press 'Space' to shoot</h1>
 	<audio id="explosionSFX" src="audio/517664__bigmanjoe__8-bit-cannon_shortened.wav"></audio>
 	<audio id="fireSFX" src="audio/350916__cabled-mess__zap-c-09_shortened_lowered.wav"></audio>
 
