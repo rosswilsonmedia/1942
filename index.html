@@ -9,11 +9,20 @@
 		font-family: 'Courier New', Courier, monospace;
 	}
 	#container{
-		background: url('img/background.jpg');
+		background: url('img/background2.jpg') repeat;
 		width:1000px;
 		height:550px;
 		position: relative;
 		margin: 0 auto;
+		animation: movingBackground 17s linear infinite;
+	}
+	@keyframes movingBackground {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position:0 560px;
+		}
 	}
 	#hero{
 		background: url('img/1942.gif');
