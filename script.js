@@ -126,24 +126,18 @@ function detectHeroCollision(){
     for(var i=0; i<enemies.length; i++){
         if(Math.abs(enemies[i].x - hero.x)<10
         && Math.abs(enemies[i].y - hero.y)<10){
-            // score-=20;
-            explosions.push({x: hero.x-7, y: hero.y-7});
+            explosions.push({x: hero.x, y: hero.y});
             displayExplosions();
             explosionSFX.play();
-            // enemies[i]=enemies[enemies.length-1];
-            // enemies.pop();
             gameReset();
         }
     }
     for(var j=0; j<bombers.length; j++){
         if(Math.abs(bombers[j].x - hero.x)<10
         && Math.abs(bombers[j].y - hero.y)<10){
-            // score-=200;
-            explosions.push({x: bullets[i].x-7, y: bullets[i].y-7});
+            explosions.push({x: bullets[i].x, y: bullets[i].y});
             displayExplosions();
             explosionSFX.play();
-            // bombers[i]=bombers[bombers.length-1];
-            // bombers.pop();
             gameReset();
         }
     }
