@@ -186,6 +186,8 @@ var bomberSpawn;
 var playStatus=2;
 
 function gameReset(){
+    clearInterval(play);
+    clearInterval(bomberSpawn);
     document.querySelector('#pauseMenu').style.display="none";
     document.querySelector('#startMenu').style.display="flex";
     hero = {
