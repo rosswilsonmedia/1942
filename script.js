@@ -7,7 +7,7 @@ var score=0;
 
 var enemies = [{x:50, y:10}, {x: 250, y: 110}, {x: 450, y:20}, {x: 550, y: 250}, {x: 750, y: 100}, {x: 625, y: 80}, {x: 900, y: 30}];
 
-var bombers = [];
+var bombers =[];
 
 var bullets=[];
 
@@ -126,19 +126,25 @@ function detectHeroCollision(){
     for(var i=0; i<enemies.length; i++){
         if(Math.abs(enemies[i].x - hero.x)<10
         && Math.abs(enemies[i].y - hero.y)<10){
-            score-=20;
+            // score-=20;
+            explosions.push({x: hero.x-7, y: hero.y-7});
+            displayExplosions();
             explosionSFX.play();
-            enemies[i]=enemies[enemies.length-1];
-            enemies.pop();
+            // enemies[i]=enemies[enemies.length-1];
+            // enemies.pop();
+            gameReset();
         }
     }
     for(var j=0; j<bombers.length; j++){
         if(Math.abs(bombers[j].x - hero.x)<10
         && Math.abs(bombers[j].y - hero.y)<10){
-            score-=200;
+            // score-=200;
+            explosions.push({x: bullets[i].x-7, y: bullets[i].y-7});
+            displayExplosions();
             explosionSFX.play();
-            bombers[i]=bombers[bombers.length-1];
-            bombers.pop();
+            // bombers[i]=bombers[bombers.length-1];
+            // bombers.pop();
+            gameReset();
         }
     }
 }
@@ -169,13 +175,30 @@ function gameLoop(){
     backgroundMove();
 }
 
-var play = setInterval(gameLoop, 33.37);
-var playStatus=1;
+var play;
+var bomberSpawn;
 
-var bomberSpawn = setInterval(function(){
-    bombers.push({x: Math.floor((Math.random()*95)+2)*10, y: -10, hp: 10});
-    displayBombers();
-}, 10000);
+//playStatus represents status of game
+//0=pause
+//1=play
+//2=startMenu
+
+var playStatus=2;
+
+function gameReset(){
+    document.querySelector('#pauseMenu').style.display="none";
+    document.querySelector('#startMenu').style.display="flex";
+    hero = {
+        x: 500,
+        y: 500
+    };
+    score=0;
+    enemies = [{x:50, y:10}, {x: 250, y: 110}, {x: 450, y:20}, {x: 550, y: 250}, {x: 750, y: 100}, {x: 625, y: 80}, {x: 900, y: 30}];
+    bombers =[];
+    bullets=[];
+    playStatus=2;
+}
+
 
 document.onkeydown = function(a){
     console.log(a.key);
@@ -197,10 +220,13 @@ document.onkeydown = function(a){
     }
     if(a.key=='p'){
         if(playStatus==1){
+            document.querySelector('#pauseMenu').style.display="flex";
             clearInterval(play);
             clearInterval(bomberSpawn);
             playStatus=0;
         } else {
+            document.querySelector('#startMenu').style.display="none";
+            document.querySelector('#pauseMenu').style.display="none";
             play = setInterval(gameLoop, 33.37);
             bomberSpawn = setInterval(function(){
                 bombers.push({x: Math.floor((Math.random()*95)+2)*10, y: -10, hp: 10});
@@ -208,6 +234,8 @@ document.onkeydown = function(a){
             }, 10000);
             playStatus=1;
         }
+    } else if(a.key=="Escape" && playStatus==0){
+        gameReset();
     }
     displayHero();
 }

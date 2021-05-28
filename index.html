@@ -1,80 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>1942 Game</title>
-
-<style type="text/css">
-	body{
-		background-color:black;
-		display: block;
-		font-family: 'Courier New', Courier, monospace;
-	}
-	#container{
-		background: url('img/background2.jpg') repeat;
-		width:1000px;
-		height:550px;
-		position: relative;
-		margin: 0 auto;
-	}
-	#hero{
-		background: url('img/1942.gif');
-		background-position: -85px -180px;
-		width:28px;
-		height:28px;
-		position:absolute;
-		z-index: 99;
-	}
-	.enemy1{
-		background: url('img/1942.gif');
-		background-position: -30px -10px;
-		width:28px;
-		height:28px;
-		position:absolute;
-		transform: rotate(180deg);
-	}
-	.enemy2{
-		background: url('img/1942.gif');
-		background-position: -35px -104px;
-		width:56px;
-		height:56px;
-		position:absolute;
-		transform: rotate(180deg);
-	}
-	.bullet{
-		background: url('img/1942.gif');
-		background-position: -185px -400px;
-		width:18px;
-		height:18px;
-		position:absolute;
-	}
-	.explosion{
-		background: url('img/1942.gif');
-		background-position: -47px -392px;
-		width:28px;
-		height:28px;
-		position:absolute;
-	}
-	#score{
-		position:absolute;
-		border:4px solid rgba(255,165,0,.75);
-		border-radius: .5em;
-		min-width: 3em;
-		text-align: right;
-		color: rgb(215, 215, 215);
-		font-weight: bold;
-		top:20px;
-		right:20px;
-		background-color:rgba(103, 103, 103, 0.75);
-		padding:10px;
-		font-size:30px;
-	}
-	h1{
-		text-align: center;
-		color: whitesmoke;
-	}
-	h1:first-of-type{
-		margin-top: 1em;
-	}
-</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div id='container'>
@@ -84,9 +15,15 @@
 		<div id='bullets'></div>
 		<div id="explosions"></div>
 		<div id='score'>0</div>
+		<div id="startMenu" class="menu">
+			<h1>1942</h1>
+			<h2>press p to start</h2>
+		</div>
+		<div id="pauseMenu" class="menu">
+			<h2>(p)aused, hit esc to exit to main menu</h2>
+		</div>
 	</div>
-	<h1>Use WASD or the Arrow Keys to Move</h1>
-	<h1>Press 'Space' to shoot</h1>
+	<h1>use wasd or the arrow keys to move, space to shoot, and p to pause</h1>
 	<audio id="explosionSFX" src="audio/517664__bigmanjoe__8-bit-cannon_shortened.wav"></audio>
 	<audio id="fireSFX" src="audio/350916__cabled-mess__zap-c-09_shortened_lowered.wav"></audio>
 
