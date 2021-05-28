@@ -169,28 +169,45 @@ function gameLoop(){
     backgroundMove();
 }
 
-setInterval(gameLoop, 33.33);
+var play = setInterval(gameLoop, 33.37);
+var playStatus=1;
 
-setInterval(function(){
+var bomberSpawn = setInterval(function(){
     bombers.push({x: Math.floor((Math.random()*95)+2)*10, y: -10, hp: 10});
     displayBombers();
 }, 10000);
 
 document.onkeydown = function(a){
     console.log(a.key);
-    if((a.key=='ArrowLeft' || a.key=='a') && hero.x>10){
-        hero.x-= 10;
-    } else if((a.key=='ArrowRight' || a.key=='d') && hero.x<970){
-        hero.x+=10;
-    } else if((a.key=='ArrowUp' || a.key=='w') && hero.y>10){
-        hero.y-=10;
-    } else if((a.key=='ArrowDown' || a.key=='s') && hero.y<520){
-        hero.y+=10;
-    } else if(a.key==' '){
-        bullets.push({x: hero.x+8, y: hero.y-15});
-        fireSFX.load();
-        fireSFX.play();
-        displayBullets();
+    if(playStatus==1){
+        if((a.key=='ArrowLeft' || a.key=='a') && hero.x>10){
+            hero.x-= 10;
+        } else if((a.key=='ArrowRight' || a.key=='d') && hero.x<970){
+            hero.x+=10;
+        } else if((a.key=='ArrowUp' || a.key=='w') && hero.y>10){
+            hero.y-=10;
+        } else if((a.key=='ArrowDown' || a.key=='s') && hero.y<520){
+            hero.y+=10;
+        } else if(a.key==' '){
+            bullets.push({x: hero.x+8, y: hero.y-15});
+            fireSFX.load();
+            fireSFX.play();
+            displayBullets();
+        }
+    }
+    if(a.key=='p'){
+        if(playStatus==1){
+            clearInterval(play);
+            clearInterval(bomberSpawn);
+            playStatus=0;
+        } else {
+            play = setInterval(gameLoop, 33.37);
+            bomberSpawn = setInterval(function(){
+                bombers.push({x: Math.floor((Math.random()*95)+2)*10, y: -10, hp: 10});
+                displayBombers();
+            }, 10000);
+            playStatus=1;
+        }
     }
     displayHero();
 }
