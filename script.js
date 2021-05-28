@@ -143,6 +143,16 @@ function detectHeroCollision(){
     }
 }
 
+var position=0;
+
+function backgroundMove() {
+    position++;
+    if(position==560){
+        position=0;
+    }
+    document.querySelector('#container').style.backgroundPosition="0px "+position+"px";
+}
+
 function gameLoop(){
     explosions=[];
     displayHero();
@@ -156,6 +166,7 @@ function gameLoop(){
     detectHeroCollision();
     displayExplosions();
     displayScore();
+    backgroundMove();
 }
 
 setInterval(gameLoop, 33.33);
